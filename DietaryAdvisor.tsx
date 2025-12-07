@@ -68,27 +68,26 @@ const DietaryAdvisor: React.FC<DietaryAdvisorProps> = ({ data }) => {
                     <p className="text-sm text-slate-400 max-w-xs mx-auto">اختر مرضاً من القائمة الجانبية لعرض النصائح الغذائية الخاصة به</p>
                 </div>
             ) : (
-                <div className="animate-fade-in-up space-y-6 max-w-4xl mx-auto pb-32 print:pb-0 print:space-y-4 print-content-wrapper">
+                <div className="animate-fade-in-up space-y-6 max-w-4xl mx-auto pb-32 print:pb-0 print:space-y-2 print-content-wrapper">
                     
                     {/* --- PRINT HEADER (Visible only in print) --- */}
-                    <div className="print-only hidden w-full mb-8">
-                        <div className="flex items-center justify-between border-b-2 border-gray-800 pb-4 mb-4">
-                            <div className="text-right">
-                                <h1 className="text-2xl font-black text-gray-900 leading-tight">صيدلية مجمع الجزيرة الطبي</h1>
-                                <p className="text-sm font-bold text-gray-600 mt-1">Al Jazeera Medical Complex Pharmacy</p>
+                    <div className="print-only hidden w-full mb-4 border-b-2 border-gray-800 pb-2">
+                        <div className="flex items-center justify-between flex-row">
+                            {/* Text Info (Right in RTL) */}
+                            <div className="text-right flex-1">
+                                <h1 className="text-2xl font-black text-gray-900 leading-none mb-1">صيدلية مجمع الجزيرة الطبي</h1>
+                                <p className="text-sm font-bold text-gray-600 mb-2">Al Jazeera Medical Complex Pharmacy</p>
+                                
+                                <div className="text-xs font-medium text-gray-500 space-y-0.5">
+                                    <p>الرياض - النسيم الغربي - شارع حسان بن ثابت</p>
+                                    <p>هاتف: 2317222 - 2789090 | خدمة 24 ساعة</p>
+                                </div>
                             </div>
-                            <div className="scale-75 origin-left">
-                                <Logo />
+
+                            {/* Logo (Left in RTL) */}
+                            <div className="shrink-0 scale-75 origin-top-left -ml-4">
+                                <Logo showText={false} />
                             </div>
-                        </div>
-                        <div className="flex justify-between items-center bg-gray-100 p-3 rounded-lg text-xs font-bold text-gray-700 border border-gray-300">
-                             <div>
-                                <span className="block">العنوان: الرياض - النسيم الغربي - شارع حسان بن ثابت</span>
-                             </div>
-                             <div className="flex gap-4">
-                                <span>ت: 2317222 - 2789090</span>
-                                <span>خدمة 24 ساعة</span>
-                             </div>
                         </div>
                     </div>
                     {/* --- END PRINT HEADER --- */}
@@ -117,36 +116,38 @@ const DietaryAdvisor: React.FC<DietaryAdvisorProps> = ({ data }) => {
                     </div>
 
                     {/* Content Header */}
-                    <div className="mb-8 print:mb-6 text-center print:text-center">
-                        <h3 className="text-3xl print:text-2xl font-extrabold text-slate-800 mb-2 print:text-black decoration-brand-500 underline decoration-4 underline-offset-8 print:no-underline print:border-b-2 print:border-black print:inline-block print:pb-2">
-                            {advice.condition}
-                        </h3>
+                    <div className="mb-8 print:mb-2 text-center print:text-right">
+                        <div className="flex items-center justify-between print:border-b print:border-gray-200 print:pb-2">
+                            <h3 className="text-3xl print:text-xl font-extrabold text-slate-800 mb-2 print:mb-0 print:text-black decoration-brand-500 underline decoration-4 underline-offset-8 print:no-underline">
+                                {advice.condition}
+                            </h3>
+                            <p className="print-only text-[10px] text-gray-400">تاريخ: {new Date().toLocaleDateString('ar-SA')}</p>
+                        </div>
                         <div className="h-1.5 w-20 bg-gradient-to-r from-brand-500 to-teal-400 rounded-full no-print mx-auto md:mx-0"></div>
-                        <p className="print-only text-xs text-gray-500 mt-2">تاريخ الطباعة: {new Date().toLocaleDateString('ar-SA')}</p>
                     </div>
 
-                    <div className="space-y-8 print:space-y-6">
+                    <div className="space-y-8 print:space-y-2">
                         {/* Print Layout: Grid for Allowed/Forbidden */}
-                        <div className="grid md:grid-cols-2 print:grid-cols-2 gap-6 print:gap-8">
+                        <div className="grid md:grid-cols-2 print:grid-cols-2 gap-6 print:gap-4">
                             
                             {/* Allowed */}
-                            <div className="bg-white p-6 md:p-8 rounded-3xl border border-green-100 shadow-[0_4px_20px_rgba(34,197,94,0.05)] relative overflow-hidden print:shadow-none print:border print:border-gray-400 print:rounded-xl print:p-4 print:bg-transparent">
+                            <div className="bg-white p-6 md:p-8 rounded-3xl border border-green-100 shadow-[0_4px_20px_rgba(34,197,94,0.05)] relative overflow-hidden print:shadow-none print:border print:border-gray-300 print:rounded-lg print:p-3 print:bg-transparent">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-green-50 rounded-bl-full -mr-8 -mt-8 -z-10 no-print"></div>
                                 
-                                <h4 className="font-bold text-green-700 flex items-center gap-3 mb-6 text-xl print:text-black print:mb-4 print:border-b print:border-gray-300 print:pb-2">
+                                <h4 className="font-bold text-green-700 flex items-center gap-3 mb-6 text-xl print:text-sm print:text-black print:mb-2 print:border-b print:border-gray-200 print:pb-1">
                                     <div className="p-2 bg-green-100 rounded-lg no-print">
                                         <CheckCircle2 className="w-6 h-6 text-green-600" />
                                     </div>
-                                    <span className="print-only text-green-600 font-bold ml-2">✓</span>
+                                    <span className="print-only text-green-600 font-bold ml-1">✓</span>
                                     <div>
                                         <span className="block">المسموح به</span>
-                                        <span className="text-xs font-normal opacity-70 text-green-600 print:text-gray-500">الأطعمة الموصى بها</span>
+                                        <span className="text-xs font-normal opacity-70 text-green-600 print:hidden">الأطعمة الموصى بها</span>
                                     </div>
                                 </h4>
-                                <ul className="space-y-3">
+                                <ul className="space-y-3 print:space-y-1">
                                     {advice.allowedFoods.map((item, idx) => (
-                                        <li key={idx} className="flex items-start gap-3 text-sm font-medium text-slate-700 print:text-black">
-                                            <div className="w-2 h-2 bg-green-500 rounded-full shrink-0 mt-1.5 print:bg-black print:w-1.5 print:h-1.5"></div>
+                                        <li key={idx} className="flex items-start gap-3 text-sm print:text-xs font-medium text-slate-700 print:text-black">
+                                            <div className="w-2 h-2 bg-green-500 rounded-full shrink-0 mt-1.5 print:bg-black print:w-1 print:h-1 print:mt-1.5"></div>
                                             {item}
                                         </li>
                                     ))}
@@ -154,23 +155,23 @@ const DietaryAdvisor: React.FC<DietaryAdvisorProps> = ({ data }) => {
                             </div>
 
                             {/* Forbidden */}
-                            <div className="bg-white p-6 md:p-8 rounded-3xl border border-red-100 shadow-[0_4px_20px_rgba(239,68,68,0.05)] relative overflow-hidden print:shadow-none print:border print:border-gray-400 print:rounded-xl print:p-4 print:bg-transparent">
+                            <div className="bg-white p-6 md:p-8 rounded-3xl border border-red-100 shadow-[0_4px_20px_rgba(239,68,68,0.05)] relative overflow-hidden print:shadow-none print:border print:border-gray-300 print:rounded-lg print:p-3 print:bg-transparent">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-bl-full -mr-8 -mt-8 -z-10 no-print"></div>
 
-                                <h4 className="font-bold text-red-700 flex items-center gap-3 mb-6 text-xl print:text-black print:mb-4 print:border-b print:border-gray-300 print:pb-2">
+                                <h4 className="font-bold text-red-700 flex items-center gap-3 mb-6 text-xl print:text-sm print:text-black print:mb-2 print:border-b print:border-gray-200 print:pb-1">
                                     <div className="p-2 bg-red-100 rounded-lg no-print">
                                         <XCircle className="w-6 h-6 text-red-600" />
                                     </div>
-                                    <span className="print-only text-red-600 font-bold ml-2">X</span>
+                                    <span className="print-only text-red-600 font-bold ml-1">X</span>
                                     <div>
                                         <span className="block">الممنوع</span>
-                                        <span className="text-xs font-normal opacity-70 text-red-600 print:text-gray-500">الأطعمة التي يجب تجنبها</span>
+                                        <span className="text-xs font-normal opacity-70 text-red-600 print:hidden">الأطعمة التي يجب تجنبها</span>
                                     </div>
                                 </h4>
-                                <ul className="space-y-3">
+                                <ul className="space-y-3 print:space-y-1">
                                     {advice.forbiddenFoods.map((item, idx) => (
-                                        <li key={idx} className="flex items-start gap-3 text-sm font-medium text-slate-700 print:text-black">
-                                            <div className="w-2 h-2 bg-red-500 rounded-full shrink-0 mt-1.5 print:bg-black print:w-1.5 print:h-1.5"></div>
+                                        <li key={idx} className="flex items-start gap-3 text-sm print:text-xs font-medium text-slate-700 print:text-black">
+                                            <div className="w-2 h-2 bg-red-500 rounded-full shrink-0 mt-1.5 print:bg-black print:w-1 print:h-1 print:mt-1.5"></div>
                                             {item}
                                         </li>
                                     ))}
@@ -179,18 +180,18 @@ const DietaryAdvisor: React.FC<DietaryAdvisorProps> = ({ data }) => {
                         </div>
 
                         {/* Tips */}
-                        <div className="bg-blue-50/50 p-6 md:p-8 rounded-3xl border border-blue-100 print:bg-transparent print:border print:border-gray-400 print:rounded-xl print:p-4 print:mt-6">
-                            <h4 className="font-bold text-blue-800 mb-6 flex items-center gap-3 text-lg print:text-black print:mb-3 print:border-b print:border-gray-300 print:pb-2">
+                        <div className="bg-blue-50/50 p-6 md:p-8 rounded-3xl border border-blue-100 print:bg-transparent print:border print:border-gray-300 print:rounded-lg print:p-3 print:mt-2">
+                            <h4 className="font-bold text-blue-800 mb-6 flex items-center gap-3 text-lg print:text-sm print:text-black print:mb-2 print:border-b print:border-gray-200 print:pb-1">
                                 <div className="p-2 bg-blue-100 rounded-lg no-print">
                                     <Utensils className="w-5 h-5 text-blue-600" />
                                 </div>
-                                <span className="print-only font-bold ml-2">•</span>
-                                <span>نصائح عامة لنمط حياة صحي</span>
+                                <span className="print-only font-bold ml-1">•</span>
+                                <span>نصائح عامة</span>
                             </h4>
-                            <ul className="grid print:grid-cols-1 gap-3">
+                            <ul className="grid print:grid-cols-2 gap-3 print:gap-x-4 print:gap-y-1">
                                  {advice.tips.map((tip, idx) => (
-                                    <li key={idx} className="flex items-start gap-3 text-sm text-slate-700 bg-white p-4 rounded-xl shadow-sm border border-blue-100/50 print:bg-transparent print:shadow-none print:border-0 print:p-0 print:text-black">
-                                        <span className="font-bold text-blue-500 text-lg leading-none mt-0.5 print:text-black">•</span>
+                                    <li key={idx} className="flex items-start gap-3 text-sm print:text-xs text-slate-700 bg-white p-4 rounded-xl shadow-sm border border-blue-100/50 print:bg-transparent print:shadow-none print:border-0 print:p-0 print:text-black">
+                                        <span className="font-bold text-blue-500 text-lg leading-none mt-0.5 print:text-black print:text-xs">•</span>
                                         {tip}
                                     </li>
                                  ))}
@@ -198,14 +199,13 @@ const DietaryAdvisor: React.FC<DietaryAdvisorProps> = ({ data }) => {
                         </div>
                     </div>
 
-                    <div className="bg-amber-50 text-amber-800 p-4 rounded-xl text-xs flex items-start gap-3 mt-8 border border-amber-100 leading-relaxed print:bg-transparent print:border print:border-gray-300 print:text-black print:text-[10px] print:mt-6">
+                    <div className="bg-amber-50 text-amber-800 p-4 rounded-xl text-xs flex items-start gap-3 mt-8 border border-amber-100 leading-relaxed print:bg-transparent print:border-t print:border-b-0 print:border-l-0 print:border-r-0 print:border-gray-300 print:text-black print:text-[10px] print:mt-4 print:pt-2 print:rounded-none">
                         <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5 text-amber-600 print:hidden" />
-                        <p className="font-medium">تنبيه: {advice.disclaimer}</p>
+                        <p className="font-medium text-center w-full">تنبيه: {advice.disclaimer}</p>
                     </div>
                     
-                    <div className="hidden print:block mt-8 pt-4 border-t border-gray-300 text-center">
-                        <p className="text-sm font-bold text-gray-800">مع تمنياتنا لكم بالشفاء العاجل</p>
-                        <p className="text-xs text-gray-500 mt-1">صيدلية مجمع الجزيرة الطبي</p>
+                    <div className="hidden print:block mt-2 text-center">
+                        <p className="text-[10px] text-gray-500">مع تمنياتنا لكم بالشفاء العاجل - صيدلية مجمع الجزيرة الطبي</p>
                     </div>
                 </div>
             )}
