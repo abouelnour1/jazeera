@@ -73,7 +73,7 @@
       @media print {
         @page {
           size: A4;
-          margin: 5mm; /* Compact margins for single page */
+          margin: 5mm; /* Minimal margins */
         }
 
         body {
@@ -122,15 +122,16 @@
           display: block !important;
         }
 
-        /* Page Breaks */
-        h3, h4 {
+        /* Prevent breaks inside critical elements */
+        h3, h4, .box-container {
           page-break-after: avoid;
+          break-inside: avoid;
         }
-        ul, p {
+        ul, p, li {
           page-break-inside: avoid;
         }
 
-        /* Force Background Colors (Optional - browsers might still override) */
+        /* Force Background Colors */
         * {
           -webkit-print-color-adjust: exact !important;
           print-color-adjust: exact !important;
